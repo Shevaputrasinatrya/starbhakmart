@@ -1,0 +1,258 @@
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.head {
+    width: 100%;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-shadow: 2px 2px 8px #FA8231;
+    margin-bottom: 30px;
+    background: #f1f2f6;
+}
+
+.head:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.mart {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    float: left;
+    margin-top: 5px;
+    padding-top: 13px;
+    padding-left: 3px;
+    font-size: 43px;
+    color: #FA8231;
+}
+
+.head h1 {
+    position: relative;
+    font-weight: bold;
+    font-size: 3vw;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    float: left;
+    color: #f1f2f6;
+    padding-top: 20px;
+    margin-top: 5px;
+    -webkit-text-stroke: 0.3vw;
+}
+
+.head h1:before {
+    font-weight: bold;
+    content: attr(data-text);
+    position: absolute;
+    width: 0;
+    height: 45px;
+    color: #227093;
+    -webkit-text-stroke: 0vw #dcdde1;
+    border-right: 2px solid #227093;
+    overflow: hidden;
+    animation: animate 6s linear infinite;
+    margin-left: 50px;
+}
+
+@keyframes animate {
+
+    0%,
+    10%,
+    100% {
+        width: 0;
+    }
+
+    50%,
+    70% {
+        width: 78%;
+    }
+}
+
+h1 svg {
+    margin-bottom: 20px;
+    color: #227093;
+}
+
+header ul {
+    float: right;
+    margin-top: 10px;
+}
+
+header ul li {
+    display: inline-block;
+}
+
+header ul li a {
+    padding: 25px 20px;
+    display: inline-block;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+header ul li a:hover {
+    background-color: #227093;
+    color: #fff;
+    text-decoration: none;
+}
+
+.active {
+    background-color: #227093;
+    color: #fff;
+}
+
+div.row div.col-md-4 span.mt-2 {
+    display: block;
+    text-align: center;
+    margin-left: 8px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 20px;
+    height: 50px;
+    ;
+    border: 1px solid black;
+
+}
+
+div.row div.col-md-4 div.keranjang {
+    display: block;
+    text-align: center;
+    height: 410px;
+    border: 1px;
+    overflow-y: scroll;
+    display: block;
+    overflow-x: none;
+    background-color: #ffffff;
+    border: 2px solid #FA8231;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+div.keranjang {
+    overflow-x: hidden;
+}
+
+div.keranjang div.row div.card {
+    width: 90%;
+    margin: 4px auto;
+
+}
+
+div.cart-text {
+    font-size: 10px;
+    color: red;
+    font-weight: bold;
+}
+
+div.cart-count {
+    font-size: 8px;
+    font-weight: bold;
+}
+
+div.harga {
+    margin: 0;
+    padding-left: 50px;
+}
+
+div.row div.col-3 img {
+    width: 100%;
+    height: 70px;
+}
+
+input.jumlah {
+    width: 50%;
+}
+
+div.input-group {
+    height: 25px;
+    text-align: center;
+}
+
+div.input-group button {
+    height: 25px;
+    width: 20%;
+    text-align: center;
+}
+
+div.input-group .form-control {
+    height: 25px;
+    width: 100px;
+    text-align: center;
+}
+
+div.input-group button i {
+    margin-left: -5px;
+}
+
+
+/* keranjang */
+div.stock {
+    background-color: #58B19F;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+
+div.search {
+    height: 100%;
+    background-color: transparent;
+}
+
+div.header {
+    padding: 0;
+    margin: 0;
+}
+
+div.brang {
+    background-color: #ffffff;
+    width: 100%;
+    height: 600px;
+    border: 2px black;
+    overflow-y: scroll;
+}
+
+div.brang div.card {
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+div.brang div.card:hover {
+    box-shadow: 2px 2px 8px #FA8231;
+    border: none;
+}
+
+.card-body .nama {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.card-body .harga {
+    color: #58B19F;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+div.brang div.card img {
+    margin: 8px 11px 4px 11px;
+    width: auto;
+    height: 150px;
+    object-fit: cover;
+
+}
+
+.curl {
+    background-color: #58B19F;
+}
+
+.btn-outline-warning {
+    margin-right: 20px;
+    margin-left: 13px;
+}
+
+.btn-outline-warning:hover {
+    color: white;
+}
+
+footer {
+    background-color: #227093;
+}

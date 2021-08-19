@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<title>Starbhak Mart</title>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+		crossorigin="anonymous"></script>
+	<style>
+		a {
+			color: black;
+		}
+
+		.keranjang {
+			overflow-y: scroll;
+			height: 350px;
+		}
+
+		.image {
+			opacity: 1;
+			display: block;
+			width: auto;
+			height: 200px;
+			transition: .5s ease;
+			backface-visibility: hidden;
+		}
+
+		.middle {
+			transition: .5s ease;
+			opacity: 0;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			-ms-transform: translate(-50%, -50%)
+		}
+
+		.produk {
+			flex: 0 0 25%;
+			margin: 5px;
+		}
+
+		.flex-row {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		.produk:hover .image {
+			opacity: 0.3;
+		}
+
+		.produk:hover .middle {
+			opacity: 1;
+		}
+
+		footer {
+			background: #E9ECEF;
+		}.navbar{
+			background-image: linear-gradient(to left #191654,#43C6AC);
+		}
+	</style>
+</head>
+
+<body>
+	<div class="jumbotron">
+		<a href="index.html" class="display-4 ml-4">Starbhak E-Mart</a>
+	</div>
+
+	<div class="container-fluid d-flex">
+		<div class="row">
+			<div class="col">
+				<div class="badge badge-dark text-wrap mb-2" style="width: 25rem;">
+					<h3>List Keranjang</h3>
+				</div>
+				<div class="card keranjang" id="keranjangItem">
+				</div>
+				<div class="row">
+					<div class="col">
+						<table class="table table-sm mt-2" width="100%">
+							<tbody>
+								<tr>
+									<td>Diskon:</td>
+									<td id="diskon">Rp. 0</td>
+								</tr>
+								<tr>
+									<td>PPN :</td>
+									<td id="ppn">Rp. 0</td>
+								</tr>
+								<tr>
+									<td>Subtotal :</td>
+									<td id="total">Rp. 0</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="d-flex justify-content-end">
+							<button type="button" class="btn btn-dark mr-2" data-toggle="modal"
+								data-target="#exampleModal">
+								Riwayat Pembelian
+							</button>
+							<button class="btn btn-outline-success" onclick="bayar()">Bayar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="container-fluid ml-5">
+			<div class="col-9">
+                <div class="border main bg-light">
+                    <div class="row" id="tempatProduk">
+                    <?php $i = 1;
+                        foreach ($barang as $brg) :?>
+                        <div class="card mb-2 ml-4 mr-1 mt-2 drag" style="width: 12rem;" onclick="tambahBarang(' + i + ')">
+                            <img src="<?= $brg['gambar'] ?>" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-title text-truncate title"><?= $brg['nama']?></p>
+                                <p class="card-text catext"> <?=rupiah($brg['harga']) ?></p>
+                            </div>
+                        </div>
+                        <?php endforeach ?>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Riwayat Pembelian</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<table class="table table-lg table-hover">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">No</th>
+								<th scope="col">Barang</th>
+								<th scope="col">Harga</th>
+								<th scope="col">Jumlah</th>
+								<th scope="col">Total</th>
+							</tr>
+						</thead>
+						<tbody id="riwayatBeli">
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer class="page-footer font-small mt-5">
+
+		<!-- Copyright -->
+		<div class="footer-copyright text-center py-3">© 2020
+			<a href="index.html"> Starbhak Mart</a>
+		</div>
+		<!-- Copyright -->
+
+	</footer>
+	<!-- Footer -->
+	<script src="app.js"></script>
+</body>
+
+</html>
